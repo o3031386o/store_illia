@@ -75,5 +75,5 @@ class Gallery(models.Model):
     def __str__(self):
         return f'{self.color_product.product.name} : {self.color_product.color.color_name}'
 
-kjn
+
 
