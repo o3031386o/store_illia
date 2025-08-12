@@ -7,7 +7,7 @@ import random
 def homepage(request):
     subcategory = SubCategory.objects.filter(category__name="مردانه")
     products = Product.objects.all()
-    recent = products[0:5] if products.count() >= 5 else products
+    recent = products[0:6] if products.count() >= 6 else products
     random_products = random.choices(products, k=(6 if products.count() >=6 else products.count()))
     return render(request,template_name='index.html', context={'subcategory': subcategory,
                                                                'products': random_products,
