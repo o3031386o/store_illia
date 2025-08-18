@@ -8,73 +8,6 @@
         <meta name="author" content="">
 
         <title>Damon</title>
-        <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-  body { background-color: #f0f0f0; }
-
-  /* سکشن بنر */
-  section#banner-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0;
-    background-color: #fff;
-  }
-
-  .carousel {
-    position: relative;
-    width: 90%;
-    max-width: 1000px;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-  }
-
-  .slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .slide {
-    min-width: 100%;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    color: white;
-  }
-
-  .slide1 { background-color: #ff6b6b; }
-  .slide2 { background-color: #4ecdc4; }
-  .slide3 { background-color: #1a535c; }
-
-  /* دکمه‌های قبلی و بعدی */
-  .prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 1.5rem;
-  }
-  .prev { left: 10px; }
-  .next { right: 10px; }
-
-  /* ریسپانسیو */
-  @media (max-width: 768px) {
-    .slide { height: 200px; font-size: 1.5rem; }
-  }
-
-  @media (max-width: 480px) {
-    .slide { height: 150px; font-size: 1.2rem; }
-    .prev, .next { font-size: 1rem; padding: 7px 10px; }
-  }
-</style>
 
         <!-- CSS FILES -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,13 +28,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
-      
         <style>
-            body, h1, h2, h3, h4, h5, h6, p {
+             body, h1, h2, h3, h4, h5, h6, p {
   font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+        </style>
 
-          </style>
 
 <!--
 
@@ -180,52 +112,7 @@ https://templatemo.com/tm-584-pod-talk
                                 <h1 class="text-white">برای کسانی که جرات دارند</h1>
                                 <p> </p>
                             </div>
-<<<<<<< HEAD
-                        <section id="banner-carousel">
-  <div class="carousel">
-    <div class="slides">
-      <div class="slide slide1">اسلاید ۱</div>
-      <div class="slide slide2">اسلاید ۲</div>
-      <div class="slide slide3">اسلاید ۳</div>
-    </div>
-    <button class="prev">&#10094;</button>
-    <button class="next">&#10095;</button>
-  </div>
-</section>
 
-<script>
-  const slides = document.querySelector('.slides');
-  const slideCount = document.querySelectorAll('.slide').length;
-  const prevBtn = document.querySelector('.prev');
-  const nextBtn = document.querySelector('.next');
-  let currentIndex = 0;
-
-  function showSlide(index) {
-    slides.style.transform = `translateX(-${index * 100}%)`;
-  }
-
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-    showSlide(currentIndex);
-  });
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slideCount;
-    showSlide(currentIndex);
-  });
-
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % slideCount;
-    showSlide(currentIndex);
-  }, 5000);
-</script>
-
-
-
-
-
-
-=======
             
                             <div class="owl-carousel owl-theme product-slider">
                                 {% for j in recent %}
@@ -254,7 +141,7 @@ https://templatemo.com/tm-584-pod-talk
                                 {% endfor %}
                             </div>
             
->>>>>>> 90c9da216b8aa7ab3600006fd06935716fbdfd49
+
                         </div>
             
                     </div>
