@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>سبد خرید</title>
+  <style>
+    body {
+      font-family: "Vazir", sans-serif;
+      background: #d9f0d1;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* دکمه باز کردن سبد خرید */
+    .cart-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #567c4e;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* پنل سبد خرید */
+    .cart {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 350px;
+      height: 100%;
+      background: #f0f9ec;
+      box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+      transition: right 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      z-index: 1000;
+    }
+
+    .cart.active {
+      right: 0;
+    }
+
+    .cart h2 {
+      margin: 0 0 20px;
+      font-size: 18px;
+      text-align: center;
+      color: #2e4d2b;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .cart-item-info {
+      flex: 1;
+      margin: 0 10px;
+    }
+
+    .cart-item-info h4 {
+      margin: 0;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .cart-item-info p {
+      margin: 5px 0 0;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #d9534f;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .cart-footer {
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      margin-top: 20px;
+    }
+
+    .cart-footer p {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: #567c4e;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- دکمه باز کردن سبد خرید -->
+  <button class="cart-btn">🛒 سبد خرید</button>
+
+  <!-- سبد خرید -->
+  <div class="cart" id="cart">
+    <h2>سبد خرید شما</h2>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <p><span>جمع کل:</span> <span id="total">0 تومان</span></p>
+      <button class="checkout-btn">پرداخت</button>
+    </div>
+  </div>
+
+  <script>
+    const cartBtn = document.querySelector(".cart-btn");
+    const cart = document.getElementById("cart");
+    const cartItems = document.getElementById("cart-items");
+    const totalEl = document.getElementById("total");
+
+    let cartData = [
+      { id: 1, name: "شلوار جین", price: 250000, img: "https://via.placeholder.com/80" },
+      { id: 2, name: "پیراهن زارا", price: 180000, img: "https://via.placeholder.com/80" }
+    ];
+
+    function renderCart() {
+      cartItems.innerHTML = "";
+      let total = 0;
+      cartData.forEach(item => {
+        total += item.price;
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <div class="cart-item-info">
+            <h4>${item.name}</h4>
+            <p>${item.price.toLocaleString()} تومان</p>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${item.id})">×</button>
+        `;
+        cartItems.appendChild(div);
+      });
+      totalEl.textContent = total.toLocaleString() + " تومان";
+    }
+
+    function removeItem(id) {
+      cartData = cartData.filter(item => item.id !== id);
+      renderCart();
+    }
+
+    cartBtn.addEventListener("click", () => {
+      cart.classList.toggle("active");
+      renderCart();
+    });
+  </script>
+
+</body>
+</html>
