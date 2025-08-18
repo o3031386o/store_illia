@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html dir="rtl" lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +25,16 @@
         <link rel="stylesheet" href="static/css/owl.theme.default.min.css">
 
         <link href="static/css/templatemo-pod-talk.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+      
+        <style>
+            body, h1, h2, h3, h4, h5, h6, p {
+  font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+          </style>
 
 <!--
 
@@ -46,12 +56,14 @@ https://templatemo.com/tm-584-pod-talk
                     </a>
 
                     <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
-                        <div class="input-group input-group-lg">
-                            <input name="search" type="search" class="form-control" id="search" placeholder="Search Podcast" aria-label="Search">
+                        <div aling="left" dir="rtl" class="input-group input-group-lg">
+                            <input name="search" type="search" class="form-control" id="search" placeholder="جست و جو" aria-label="Search">
 
-                            <button style="background-color:#537D5D;" type="submit" class="form-control" id="submit">
+                            <!-- <button   dir="rtl" type="submit" class="form-control" id="submit">
                                 <i class="bi-search"></i>
-                            </button>
+                            </button> -->
+                            
+
                         </div>
                     </form>
 
@@ -92,78 +104,144 @@ https://templatemo.com/tm-584-pod-talk
             </nav>
 
 
-            <section class="hero-section">
+            <section dir="ltr" class="hero-section">
                 <div class="container">
                     <div class="row">
-
+            
                         <div class="col-lg-12 col-12">
                             <div class="text-center mb-25 pb-25">
                                 <h1 class="text-white">برای کسانی که جرات دارند</h1>
-
-
-                                <a href="#section_2" class="btn custom-btn smoothscroll mt-3">همین حالا خرید کنید </a>
                                 <p> </p>
                             </div>
-                        <div  class="owl-carousel owl-theme">
+            
+                            <div class="owl-carousel owl-theme product-slider">
                                 {% for j in recent %}
-<div class="owl-carousel-info-wrap item">
-    {% for y in j.colorproductrelations_set.all %}
-    <img  src="{{ y.gallery_set.first.image.url }}" class="owl-carousel-image img-fluid" alt="" style="display: {% if forloop.first %}block{% else %}none{% endif %};height: 430px;width: 100%">
-    {% endfor %}
-
-    <div style="background:rgba(255,255,255,0.01);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:20px;color:#fff;" class="owl-carousel-info">
-        <h4 class="mb-2">
-            {{ j.name }}
-            <img src="/static/images/verified.png" class="owl-carousel-verified-image img-fluid" alt="">
-        </h4>
-        <span class="badge">{{ j.name }}</span>
-        <span class="badge">Design</span>
-    </div>
-
-    <div class="social-share">
-        <ul class="social-icon">
-            {% for k in j.colorproductrelations_set.all %}
-            <li class="social-icon-item">
-                <a href="#" class="social-icon-link"
-                   data-img="{{ k.gallery_set.first.image.url }}">{{ k.color }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <script>
-        document.querySelectorAll('.social-icon-link').forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const imgSrc = this.dataset.img;
-                const item = this.closest('.owl-carousel-info-wrap');
-                const mainImages = item.querySelectorAll('.owl-carousel-image');
-
-                mainImages.forEach(function(img){
-                    if(img.src.includes(imgSrc)){
-                        img.style.display = 'block';
-                    } else {
-                        img.style.display = 'none';
-                    }
-                });
-            });
-        });
-        </script>
-</div>
-{% endfor %}
-
-
-
-
-
-
+                                <div dir="rtl" class="owl-carousel-info-wrap item position-relative">
+                                    {% for y in j.colorproductrelations_set.all %}
+                                    <img src="{{ y.gallery_set.first.image.url }}"
+                                         class="owl-carousel-image img-fluid"
+                                         alt=""
+                                         style="display: {% if forloop.first %}block{% else %}none{% endif %};">
+                                    {% endfor %}
+            
+                                    <div dir="rtl" class="owl-carousel-info">
+                                        <h4  dir="rtl" class="mb-2">
+                                            {{ j.name }}
+                                        </h4>
+                                        <div class="color-buttons">
+                                            {% for k in j.colorproductrelations_set.all %}
+                                            <button class="color-btn"
+                                                    data-img="{{ k.gallery_set.first.image.url }}">
+                                                {{ k.color }}
+                                            </button>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+            
                         </div>
-
-                    </div>
-
+            
                     </div>
                 </div>
             </section>
-
+            
+            <style>
+            /* تصاویر */
+            .owl-carousel-image {
+                width: 100%;
+                max-height: 430px;
+                object-fit: cover;
+                border-radius: 15px;
+            }
+            
+            /* کارت اطلاعات */
+            .owl-carousel-info {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                padding: 20px;
+                color: #fff;
+            }
+            
+            /* دکمه های رنگ */
+            .color-buttons {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            .color-btn {
+                background: rgba(203, 63, 63, 0.2);
+                border: none;
+                border-radius: 12px;
+                color: #fff;
+                padding: 5px 10px;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+            .color-btn:hover {
+                background: rgba(255,255,255,0.4);
+            }
+            
+            /* موبایل */
+            @media (max-width: 768px) {
+                .owl-carousel-image {
+                    max-height: 250px;
+                }
+            
+                .owl-carousel-info {
+                    position: relative;
+                    bottom: auto;
+                    left: auto;
+                    right: auto;
+                    margin-top: 10px;
+                }
+            }
+            </style>
+            
+            <script>
+            /* تغییر تصویر هنگام انتخاب رنگ */
+            document.querySelectorAll('.color-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const imgSrc = this.dataset.img;
+                    const item = this.closest('.owl-carousel-info-wrap');
+                    const mainImages = item.querySelectorAll('.owl-carousel-image');
+            
+                    mainImages.forEach(function(img){
+                        if(img.src.includes(imgSrc)){
+                            img.style.display = 'block';
+                        } else {
+                            img.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            /* OwlCarousel */
+            $(document).ready(function(){
+                $(".product-slider").owlCarousel({
+                    loop:true,
+                    margin:0,
+                    nav:true,
+                    dots:true,
+                    autoplay:true,
+                    autoplayTimeout:4000,
+                    items:1
+                });
+            });
+            </script>
+            
+            
+            
+            
 
             <!--  -->
 
@@ -213,14 +291,12 @@ https://templatemo.com/tm-584-pod-talk
 
                                     <div class="custom-block-bottom d-flex justify-content-between mt-3">
                                         <a href="#" class="bi-headphones me-1">
-                                            <span>100k</span>
+                                            <span>{{o.count}}</span>
                                         </a>
                                         <a href="#" class="bi-heart me-1">
                                             <span>2.5k</span>
                                         </a>
-                                        <a href="#" class="bi-chat me-1">
-                                            <span>924k</span>
-                                        </a>
+                                        
                                     </div>
                                 </div>
 
@@ -273,114 +349,14 @@ https://templatemo.com/tm-584-pod-talk
                         </style>
 
 
-                        <div class="col-lg-4 col-12 mb-4 mb-lg-0">
-                            <div class="custom-block custom-block-full">
-                                <div class="custom-block-image-wrap">
-                                    <a href="detail-page.html">
-                                        <img src="static/images/podcast/27670664_7369753.jpg" class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
+                      
 
-                                <div class="custom-block-info">
-                                    <h5 class="mb-2">
-                                        <a href="detail-page.html">
-                                            Vintage Show
-                                        </a>
-                                    </h5>
-
-                                    <div class="profile-block d-flex">
-                                        <img src="static/images/profile/cute-smiling-woman-outdoor-portrait.jpg" class="profile-block-image img-fluid" alt="">
-
-                                        <p>
-                                            Taylor
-                                            <img src="images/verified.png" class="verified-image img-fluid" alt="">
-                                            <strong>Creator</strong>
-                                        </p>
-                                    </div>
-
-                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-
-                                    <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                        <a href="#" class="bi-headphones me-1">
-                                            <span>100k</span>
-                                        </a>
-
-                                        <a href="#" class="bi-heart me-1">
-                                            <span>2.5k</span>
-                                        </a>
-
-                                        <a href="#" class="bi-chat me-1">
-                                            <span>924k</span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="social-share d-flex flex-column ms-auto">
-                                    <a href="#" class="badge ms-auto">
-                                        <i class="bi-heart"></i>
-                                    </a>
-
-                                    <a href="#" class="badge ms-auto">
-                                        <i class="bi-bookmark"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-12">
-                            <div class="custom-block custom-block-full">
-                                <div class="custom-block-image-wrap">
-                                    <a href="detail-page.html">
-                                        <img src="static/images/podcast/12577967_02.jpg" class="custom-block-image img-fluid" alt="">
-                                    </a>
-                                </div>
-
-                                <div class="custom-block-info">
-                                    <h5 class="mb-2">
-                                        <a href="detail-page.html">
-                                            Daily Talk
-                                        </a>
-                                    </h5>
-
-                                    <div class="profile-block d-flex">
-                                        <img src="static/images/profile/handsome-asian-man-listening-music-through-headphones.jpg" class="profile-block-image img-fluid" alt="">
-
-                                        <p>
-                                            William
-                                            <img src="static/images/verified.png" class="verified-image img-fluid" alt="">
-                                            <strong>Vlogger</strong></p>
-                                    </div>
-
-                                    <p class="mb-0">Lorem Ipsum dolor sit amet consectetur</p>
-
-                                    <div class="custom-block-bottom d-flex justify-content-between mt-3">
-                                        <a href="#" class="bi-headphones me-1">
-                                            <span>100k</span>
-                                        </a>
-
-                                        <a href="#" class="bi-heart me-1">
-                                            <span>2.5k</span>
-                                        </a>
-
-                                        <a href="#" class="bi-chat me-1">
-                                            <span>924k</span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="social-share d-flex flex-column ms-auto">
-                                    <a href="#" class="badge ms-auto">
-                                        <i class="bi-heart"></i>
-                                    </a>
-
-                                    <a href="#" class="badge ms-auto">
-                                        <i class="bi-bookmark"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                        
+                </div>
+                <br>
+                <br>
+                <div align="center" class="ms-4">
+                    <a href="#section_3" class="btn custom-btn custom-border-btn smoothscroll">Get started</a>
                 </div>
             </section>
         </main>
@@ -390,19 +366,7 @@ https://templatemo.com/tm-584-pod-talk
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-                        <div class="subscribe-form-wrap">
-                            <h6>Subscribe. Every weekly.</h6>
-
-                            <form class="custom-form subscribe-form" action="#" method="get" role="form">
-                                <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email Address" required="">
-
-                                <div class="col-lg-12 col-12">
-                                    <button type="submit" class="form-control" id="submit">Subscribe</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    
 
                     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-md-0 mb-lg-0">
                         <h6 class="site-footer-title mb-3">Contact</h6>
@@ -418,17 +382,7 @@ https://templatemo.com/tm-584-pod-talk
                     <div class="col-lg-3 col-md-6 col-12">
                         <h6 class="site-footer-title mb-3">Download Mobile</h6>
 
-                        <div class="site-footer-thumb mb-4 pb-2">
-                            <div class="d-flex flex-wrap">
-                                <a href="#">
-                                    <img src="static/images/app-store.png" class="me-3 mb-2 mb-lg-0 img-fluid" alt="">
-                                </a>
-
-                                <a href="#">
-                                    <img src="static/images/play-store.png" class="img-fluid" alt="">
-                                </a>
-                            </div>
-                        </div>
+                    
 
                         <h6 class="site-footer-title mb-3">Social</h6>
 
@@ -453,11 +407,7 @@ https://templatemo.com/tm-584-pod-talk
             <div class="container pt-5">
                 <div class="row align-items-center">
 
-                    <div class="col-lg-2 col-md-3 col-12">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="static/images/pod-talk-logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
-                        </a>
-                    </div>
+                  
 
                     <div class="col-lg-7 col-md-9 col-12">
                         <ul class="site-footer-links">
