@@ -16,15 +16,15 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="static/css/bootstrap-icons.css">
+        <link rel="stylesheet" href="/static/css/bootstrap-icons.css">
 
-        <link rel="stylesheet" href="static/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
 
-        <link rel="stylesheet" href="static/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
 
-        <link href="static/css/templatemo-pod-talk.css" rel="stylesheet">
+        <link href="/static/css/templatemo-pod-talk.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -51,7 +51,7 @@ https://templatemo.com/tm-584-pod-talk
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand me-lg-5 me-0" href="index.html">
-                        <img src="static/images/pod-talk-logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                        <img src="/static/images/pod-talk-logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
                     </a>
 
                     <form action="#" method="get" class="custom-form search-form flex-fill me-3" role="search">
@@ -85,7 +85,7 @@ https://templatemo.com/tm-584-pod-talk
 
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                     {%for i in subcategory%}
-                                    <li><a  style="font-family: Vazirmatn, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;" class="dropdown-item" href="{% url 'subcategory' pk=i.pk %}">{{ i.name }}</a></li>
+                                    <li><a style="font-family: Vazirmatn, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;" class="dropdown-item" href="listing-page.html">{{ i.name }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li>
@@ -103,153 +103,10 @@ https://templatemo.com/tm-584-pod-talk
             </nav>
 
 
-            <section dir="ltr" class="hero-section">
-                <div class="container">
-                    <div class="row">
 
-                        <div class="col-lg-12 col-12">
-                            <div class="text-center mb-25 pb-25">
-                                <h1 class="text-white">برای کسانی که جرات دارند</h1>
-                                <p> </p>
-                            </div>
-
-
-                            <div class="owl-carousel owl-theme product-slider">
-                                {% for j in recent %}
-                                <div dir="rtl" class="owl-carousel-info-wrap item position-relative">
-                                    {% for y in j.colorproductrelations_set.all %}
-                                    <img src="{{ y.gallery_set.first.image.url }}"
-                                         class="owl-carousel-image img-fluid"
-                                         alt=""
-                                         style="display: {% if forloop.first %}block{% else %}none{% endif %};">
-                                    {% endfor %}
-
-                                    <div dir="rtl" class="owl-carousel-info">
-                                        <h4  dir="rtl" class="mb-2">
-                                            {{ j.name }}
-                                        </h4>
-                                        <div class="color-buttons">
-                                            {% for k in j.colorproductrelations_set.all %}
-                                            <button class="color-btn"
-                                                    data-img="{{ k.gallery_set.first.image.url }}">
-                                                {{ k.color }}
-                                            </button>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <style>
-            /* تصاویر */
-            .owl-carousel-image {
-                width: 100%;
-                max-height: 430px;
-                object-fit: cover;
-                border-radius: 15px;
-            }
-
-            /* کارت اطلاعات */
-            .owl-carousel-info {
-                position: absolute;
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-                background: rgba(255, 255, 255, 0.05);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 20px;
-                padding: 20px;
-                color: #fff;
-            }
-
-            /* دکمه های رنگ */
-            .color-buttons {
-                margin-top: 10px;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 5px;
-            }
-            .color-btn {
-                background: rgba(203, 63, 63, 0.2);
-                border: none;
-                border-radius: 12px;
-                color: #fff;
-                padding: 5px 10px;
-                cursor: pointer;
-                transition: background 0.3s;
-            }
-            .color-btn:hover {
-                background: rgba(255,255,255,0.4);
-            }
-
-            /* موبایل */
-            @media (max-width: 768px) {
-                .owl-carousel-image {
-                    max-height: 250px;
-                }
-
-                .owl-carousel-info {
-                    position: relative;
-                    bottom: auto;
-                    left: auto;
-                    right: auto;
-                    margin-top: 10px;
-                }
-            }
-            </style>
-
-            <script>
-            /* تغییر تصویر هنگام انتخاب رنگ */
-            document.querySelectorAll('.color-btn').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    const imgSrc = this.dataset.img;
-                    const item = this.closest('.owl-carousel-info-wrap');
-                    const mainImages = item.querySelectorAll('.owl-carousel-image');
-
-                    mainImages.forEach(function(img){
-                        if(img.src.includes(imgSrc)){
-                            img.style.display = 'block';
-                        } else {
-                            img.style.display = 'none';
-                        }
-                    });
-                });
-            });
-
-            /* OwlCarousel */
-            $(document).ready(function(){
-                $(".product-slider").owlCarousel({
-                    loop:true,
-                    margin:0,
-                    nav:true,
-                    dots:true,
-                    autoplay:true,
-                    autoplayTimeout:4000,
-                    items:1
-                });
-            });
-            </script>
-
-
-
-
-
-            <!--  -->
-
-
-
-
-
+<br>
+        <br>
+        <br>
             <section class="trending-podcast-section section-padding">
                 <div class="container">
                     <div class="row">
@@ -359,6 +216,7 @@ https://templatemo.com/tm-584-pod-talk
                 <div align="center" class="ms-4">
                     <a href="#section_3" class="btn custom-btn custom-border-btn smoothscroll">Get started</a>
                 </div>
+                </div>
             </section>
         </main>
 
@@ -441,10 +299,10 @@ https://templatemo.com/tm-584-pod-talk
 
 
         <!-- JAVASCRIPT FILES -->
-        <script src="static/js/jquery.min.js"></script>
-        <script src="static/js/bootstrap.bundle.min.js"></script>
-        <script src="static/js/owl.carousel.min.js"></script>
-        <script src="static/js/custom.js"></script>
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/js/owl.carousel.min.js"></script>
+        <script src="/static/js/custom.js"></script>
 
     </body>
 </html>

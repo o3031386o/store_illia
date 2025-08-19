@@ -29,3 +29,10 @@ def product(request,pk):
         pass
     return render(request,template_name='product.html', context={'product': pk})
 
+
+def product_filter_by_subcategory(request, pk):
+    subcategory = SubCategory.objects.filter(category__name="مردانه")
+    products = Product.objects.filter(sub_category__pk=pk)
+    return render(request, template_name='product_filter_sub.html', context={'products': products,
+                                                                             'subcategory': subcategory})
+
