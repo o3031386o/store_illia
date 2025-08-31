@@ -1,185 +1,229 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>سبد خرید</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سبد خرید | Time To Talk</title>
   <style>
     body {
-      font-family: "Vazir", sans-serif;
-      background: #d9f0d1;
       margin: 0;
-      padding: 0;
+      font-family: 'Vazirmatn', sans-serif;
+      background: #a2c48d;
+      color: #222;
     }
 
-    /* دکمه باز کردن سبد خرید */
-    .cart-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #567c4e;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    /* پنل سبد خرید */
-    .cart {
-      position: fixed;
-      top: 0;
-      right: -400px;
-      width: 350px;
-      height: 100%;
-      background: #f0f9ec;
-      box-shadow: -4px 0 10px rgba(0,0,0,0.2);
-      transition: right 0.3s ease;
-      padding: 20px;
-      overflow-y: auto;
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-      z-index: 1000;
-    }
-
-    .cart.active {
-      right: 0;
-    }
-
-    .cart h2 {
-      margin: 0 0 20px;
-      font-size: 18px;
-      text-align: center;
-      color: #2e4d2b;
-    }
-
-    .cart-item {
+    /* Header */
+    .header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background: #fff;
-      border-radius: 12px;
-      padding: 10px;
-      margin-bottom: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      justify-content: space-between;
+      padding: 15px 40px;
+      background: #a2c48d;
     }
-
-    .cart-item img {
-      width: 50px;
+    .logo img {
       height: 50px;
+    }
+    .search-box {
+      display: flex;
       border-radius: 8px;
-      object-fit: cover;
+      overflow: hidden;
+      background: #fff;
+      width: 320px;
     }
-
-    .cart-item-info {
+    .search-box input {
+      border: none;
+      padding: 8px 12px;
+      outline: none;
       flex: 1;
-      margin: 0 10px;
     }
-
-    .cart-item-info h4 {
-      margin: 0;
-      font-size: 14px;
+    .search-box button {
+      background: #466b44;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
       color: #333;
     }
-
-    .cart-item-info p {
-      margin: 5px 0 0;
-      font-size: 12px;
-      color: #666;
-    }
-
-    .remove-btn {
-      background: none;
-      border: none;
-      color: #d9534f;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .cart-footer {
-      border-top: 1px solid #ccc;
-      padding-top: 15px;
-      margin-top: 20px;
-    }
-
-    .cart-footer p {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      margin: 5px 0;
-    }
-
-    .checkout-btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 25px;
-      background: #567c4e;
+    .btn-outline {
+      border: 2px solid #fff;
+      background: transparent;
+      padding: 6px 16px;
+      border-radius: 20px;
       color: #fff;
-      font-size: 16px;
-      margin-top: 15px;
       cursor: pointer;
     }
 
+    /* Cart Section */
+    .cart-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #d8e7d1;
+      border-radius: 20px;
+      padding: 30px;
+    }
+    .cart-container h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .cart-item img {
+      width: 100px;
+      border-radius: 10px;
+    }
+    .item-info {
+      flex: 1;
+      margin-right: 20px;
+    }
+    .item-info h3 {
+      margin: 0 0 5px;
+    }
+    .item-info p {
+      margin: 0;
+      color: #466b44;
+      font-weight: bold;
+    }
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .qty {
+      width: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .remove-btn {
+      background: crimson;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* Cart Summary */
+    .cart-summary {
+      margin-top: 30px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .cart-summary p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .checkout-btn {
+      margin-top: 15px;
+      background: #466b44;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
-
-  <!-- دکمه باز کردن سبد خرید -->
-  <button class="cart-btn">🛒 سبد خرید</button>
-
-  <!-- سبد خرید -->
-  <div class="cart" id="cart">
-    <h2>سبد خرید شما</h2>
-    <div id="cart-items"></div>
-    <div class="cart-footer">
-      <p><span>جمع کل:</span> <span id="total">0 تومان</span></p>
-      <button class="checkout-btn">پرداخت</button>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
     </div>
-  </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search Podcast">
+      <button>🔍</button>
+    </div>
+    <nav>
+      <a href="#">خانه</a>
+      <a href="#">دسته بندی</a>
+      <a href="#">درباره ما</a>
+      <a href="#">ارتباط با ما</a>
+    </nav>
+    <button class="btn-outline">Get started</button>
+  </header>
+
+  <!-- Cart -->
+  <section class="cart-container">
+    <h1>سبد خرید شما</h1>
+    <div class="cart-items" id="cartItems">
+      <!-- محصولات با جاوااسکریپت لود می‌شوند -->
+    </div>
+
+    <div class="cart-summary">
+      <p>جمع کل: <span id="totalPrice">0</span> تومان</p>
+      <button class="checkout-btn">ادامه خرید</button>
+    </div>
+  </section>
 
   <script>
-    const cartBtn = document.querySelector(".cart-btn");
-    const cart = document.getElementById("cart");
-    const cartItems = document.getElementById("cart-items");
-    const totalEl = document.getElementById("total");
-
-    let cartData = [
-      { id: 1, name: "شلوار جین", price: 250000, img: "https://via.placeholder.com/80" },
-      { id: 2, name: "پیراهن زارا", price: 180000, img: "https://via.placeholder.com/80" }
+    // داده‌های تستی (می‌تونه از بک‌اند بیاد)
+    let cart = [
+      {id: 1, name: "شلوار جین", price: 850000, qty: 1, img: "product1.jpg"},
+      {id: 2, name: "پیراهن زارا", price: 650000, qty: 2, img: "product2.jpg"},
     ];
 
     function renderCart() {
+      const cartItems = document.getElementById("cartItems");
       cartItems.innerHTML = "";
       let total = 0;
-      cartData.forEach(item => {
-        total += item.price;
-        const div = document.createElement("div");
-        div.classList.add("cart-item");
-        div.innerHTML = `
-          <img src="${item.img}" alt="${item.name}">
-          <div class="cart-item-info">
-            <h4>${item.name}</h4>
-            <p>${item.price.toLocaleString()} تومان</p>
+
+      cart.forEach(item => {
+        total += item.price * item.qty;
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.name}">
+            <div class="item-info">
+              <h3>${item.name}</h3>
+              <p>${item.price.toLocaleString()} تومان</p>
+            </div>
+            <div class="item-actions">
+              <input type="number" class="qty" value="${item.qty}" min="1" onchange="updateQty(${item.id}, this.value)">
+              <button class="remove-btn" onclick="removeItem(${item.id})">حذف</button>
+            </div>
           </div>
-          <button class="remove-btn" onclick="removeItem(${item.id})">×</button>
         `;
-        cartItems.appendChild(div);
       });
-      totalEl.textContent = total.toLocaleString() + " تومان";
+
+      document.getElementById("totalPrice").textContent = total.toLocaleString();
+    }
+
+    function updateQty(id, qty) {
+      const product = cart.find(p => p.id === id);
+      if (product) {
+        product.qty = parseInt(qty);
+      }
+      renderCart();
     }
 
     function removeItem(id) {
-      cartData = cartData.filter(item => item.id !== id);
+      cart = cart.filter(p => p.id !== id);
       renderCart();
     }
 
-    cartBtn.addEventListener("click", () => {
-      cart.classList.toggle("active");
-      renderCart();
-    });
+    renderCart();
   </script>
-
 </body>
 </html>
