@@ -24,6 +24,8 @@ urlpatterns = [
     path("cart/add/<int:pk>/", views.add_to_cart, name="add_to_cart"),  # اضافه کردن محصول
     path("cart/remove/<int:pk>/", views.remove_from_cart, name="remove_from_cart"),
     path("cart/", views.cart_detail, name="cart_detail"),
+
+
 ]
 
 
