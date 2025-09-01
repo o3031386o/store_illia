@@ -32,7 +32,22 @@ def product(request,pk):
 
 def product_filter_by_subcategory(request, pk):
     subcategory = SubCategory.objects.filter(category__name="مردانه")
-    products = Product.objects.filter(sub_category__pk=pk)
-    return render(request, template_name='product_filter_sub.html', context={'products': products,
+    colors_filter = request.GET.getlist("colors", [])
+    print(colors_filter)
+    size_filter = request.GET.getlist("sizes", [])
+    print(size_filter)
+
+
+
+    sub_filter = SubCategory.objects.get(pk=pk)
+    products = Product.objects.filter(sub_category = sub_filter)
+    if size_filter != []:
+        products = products.filter(colorproductrelations__sizebycolorproductrelations__size__size__in=size_filter)
+    if colors_filter != []:
+        products = products.filter(colorproductrelations__color__color_name__in=colors_filter)
+    paginator = Paginator(products, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, template_name='product_filter_sub.html', context={'products': page_obj,
                                                                              'subcategory': subcategory})
 
