@@ -1,12 +1,8 @@
 import random
-<<<<<<< HEAD
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
-=======
 from django.core.paginator import Paginator
 from django.shortcuts import render
->>>>>>> 65e13f4b16fb7e707c7f1eefadd49f97481bb0b6
 from .models import *
 import random
 
