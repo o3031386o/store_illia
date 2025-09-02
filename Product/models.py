@@ -57,9 +57,6 @@ class SizeByColorProductRelations(models.Model):
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
     count = models.IntegerField(default=0)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.price = None
 
     def __str__(self):
         return f'{self.color_product.product.name} : {self.color_product.color.color_name} : {self.size.size}'
