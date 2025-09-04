@@ -26,7 +26,10 @@ urlpatterns = [
     path("cart/", views.cart_detail, name="cart_detail"),
 
 
+
 ]
+
+
 
 
 

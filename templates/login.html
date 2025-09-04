@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ورود به سایت</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: #99b982; /* سبز ملایم هماهنگ با سایت */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      color: #2d4739;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+      text-align: right;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d4739;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #567d46;
+      box-shadow: 0 0 5px rgba(86, 125, 70, 0.5);
+    }
+
+    .btn-login {
+      background: #567d46;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 30px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-login:hover {
+      background: #2d4739;
+    }
+
+    .extra-links {
+      margin-top: 1rem;
+      font-size: 14px;
+    }
+
+    .extra-links a {
+      color: #567d46;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>ورود به حساب کاربری</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">ایمیل یا نام کاربری</label>
+        <input type="text" id="username" placeholder="نام کاربری یا ایمیل">
+      </div>
+      <div class="form-group">
+        <label for="password">رمز عبور</label>
+        <input type="password" id="password" placeholder="رمز عبور">
+      </div>
+      <button type="submit" class="btn-login">ورود</button>
+    </form>
+    <div class="extra-links">
+      <p>حساب ندارید؟ <a href="#">ثبت‌نام کنید</a></p>
+      <p><a href="#">فراموشی رمز عبور</a></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (username === "" || password === "") {
+        alert("لطفاً تمام فیلدها را پر کنید.");
+        return;
+      }
+
+      alert("ورود موفقیت‌آمیز بود 🎉");
+      // اینجا می‌تونی ریدایرکت کنی مثلاً:
+      // window.location.href = "/home";
+    });
+  </script>
+</body>
+</html>

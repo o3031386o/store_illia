@@ -346,3 +346,5 @@ def cart_detail(request):
     items = cart.items.all()
     total = cart.total_price
     return render(request, "cart.html", {"cart": cart, "items": items, "total": total})
+
+
