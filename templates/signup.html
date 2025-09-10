@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ثبت‌نام</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: #99b982; /* هماهنگ با سایت */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .signup-container {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      text-align: center;
+    }
+
+    .signup-container h2 {
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      color: #2d4739;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+      text-align: right;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d4739;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #567d46;
+      box-shadow: 0 0 5px rgba(86, 125, 70, 0.5);
+    }
+
+    .btn-signup {
+      background: #567d46;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 30px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-signup:hover {
+      background: #2d4739;
+    }
+
+    .extra-links {
+      margin-top: 1rem;
+      font-size: 14px;
+    }
+
+    .extra-links a {
+      color: #567d46;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>ثبت‌نام</h2>
+    <form id="signupForm">
+      <div class="form-group">
+        <label for="fullname">نام کامل</label>
+        <input type="text" id="fullname" placeholder="نام و نام خانوادگی">
+      </div>
+      <div class="form-group">
+        <label for="email">ایمیل</label>
+        <input type="email" id="email" placeholder="ایمیل شما">
+      </div>
+      <div class="form-group">
+        <label for="username">نام کاربری</label>
+        <input type="text" id="username" placeholder="نام کاربری">
+      </div>
+      <div class="form-group">
+        <label for="password">رمز عبور</label>
+        <input type="password" id="password" placeholder="رمز عبور">
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">تکرار رمز عبور</label>
+        <input type="password" id="confirmPassword" placeholder="تکرار رمز عبور">
+      </div>
+      <button type="submit" class="btn-signup">ثبت‌نام</button>
+    </form>
+    <div class="extra-links">
+      <p>حساب دارید؟ <a href="login.html">وارد شوید</a></p>
+    </div>
+  </div>
+
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fullname = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+      if (!fullname || !email || !username || !password || !confirmPassword) {
+        alert("لطفاً تمام فیلدها را پر کنید.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("رمز عبور و تکرار آن یکسان نیستند.");
+        return;
+      }
+
+      alert("ثبت‌نام موفقیت‌آمیز بود 🎉");
+      // اینجا می‌تونی ارسال به سرور/ریدایرکت بزنی
+      // window.location.href = "/home";
+    });
+  </script>
+</body>
+</html>
